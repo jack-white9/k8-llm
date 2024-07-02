@@ -4,16 +4,13 @@ metadata:
   name: k8-llm-deployment
 spec:
   replicas: 1
-  # manage pods matching label "llm-api"
   selector:
     matchLabels:
-      name: llm-api
-  # define pod template (+ label "llm-api")
+      app: llm-api
   template:
     metadata:
       labels:
-        name: llm-api
-    # define container config to run in pods
+        app: llm-api
     spec:
       containers:
         - name: llm-api
