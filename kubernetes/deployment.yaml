@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8-llm-deployment
+spec:
+  replicas: 1
+  # manage pods matching label "llm-api"
+  selector:
+    matchLabels:
+      name: llm-api
+  # define pod template (+ label "llm-api")
+  template:
+    metadata:
+      labels:
+        name: llm-api
+    # define container config to run in pods
+    spec:
+      containers:
+        - name: llm-api
+          image: llm-api
+          ports:
+            - containerPort: 80
+          imagePullPolicy: Never
